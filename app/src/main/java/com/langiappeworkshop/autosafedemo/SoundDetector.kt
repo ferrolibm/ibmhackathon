@@ -7,7 +7,7 @@ import android.media.MediaRecorder
 import android.os.Handler
 import android.support.v4.app.ActivityCompat
 
-class SoundDetector(val activity: Activity) {
+class SoundDetector(private val activity: Activity) {
     private var recorder: MediaRecorder? = null
 
     fun getPermissions(): Boolean {
@@ -25,11 +25,15 @@ class SoundDetector(val activity: Activity) {
 
     fun startRecording(handler: Handler, runnableCode: Runnable) {
         //Creating MediaRecorder and specifying audio source, output format, encoder & output format
+
+        // Record to the external cache directory for visibility
+        val fileName = "${activity.externalCacheDir?.absolutePath}/audiorecordtest.3gp"
+
         recorder = MediaRecorder()
         recorder?.setAudioSource(MediaRecorder.AudioSource.MIC)
         recorder?.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
         recorder?.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
-        recorder?.setOutputFile("/dev/null")
+        recorder?.setOutputFile("/dev/null")//(fileName)
         recorder?.prepare()
         recorder?.start()
         handler.post(runnableCode)
@@ -41,7 +45,6 @@ class SoundDetector(val activity: Activity) {
         recorder = null
         handler.removeCallbacks(runnableCode)
     }
-
 
     fun getAmplitude(): Int? {
         return if (recorder != null) {

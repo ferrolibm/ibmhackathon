@@ -5,6 +5,7 @@ import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 
 
@@ -12,9 +13,13 @@ class MainActivity : AppCompatActivity() {
 
     private var startButton: Button? = null
     private var stopButton: Button? = null
+    private var sendButton: Button? = null
     private var tvAmplitude: TextView? = null
+    private var etPhone: EditText? = null
+    private var etMessage: EditText? = null
 
     private lateinit var soundDetector: SoundDetector
+    private lateinit var sMSSender: SendSMS
     private val handler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,10 +27,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         soundDetector = SoundDetector(this)
+        sMSSender = SendSMS(this)
 
         startButton = findViewById(R.id.btnStart)
         stopButton = findViewById(R.id.btnStop)
+        sendButton = findViewById(R.id.btnSend)
         tvAmplitude = findViewById(R.id.tvAmplitude)
+        etPhone = findViewById(R.id.etPhone)
+        etMessage = findViewById(R.id.etMessage)
 
         startButton?.isEnabled = true
         stopButton?.isEnabled = false
@@ -49,6 +58,12 @@ class MainActivity : AppCompatActivity() {
             stopButton?.isEnabled = false
             //stopping recorder
             soundDetector.stopRecording(handler, runnableCode)
+        }
+
+        sendButton?.setOnClickListener { _ ->
+            val phone = etPhone?.text.toString()
+            val message = etMessage?.text.toString()
+            sMSSender.sendSMS(phone, message)
         }
     }
 
