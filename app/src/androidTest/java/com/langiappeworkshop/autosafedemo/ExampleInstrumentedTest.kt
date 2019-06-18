@@ -1,4 +1,4 @@
-package com.langiappeworkshop.sounddetector
+package com.langiappeworkshop.autosafedemo
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

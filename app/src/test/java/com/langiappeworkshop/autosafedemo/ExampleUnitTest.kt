@@ -1,4 +1,4 @@
-package com.langiappeworkshop.sounddetector
+package com.langiappeworkshop.autosafedemo
 
 import org.junit.Test
 
