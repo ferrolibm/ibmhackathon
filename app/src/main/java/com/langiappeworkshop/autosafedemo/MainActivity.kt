@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
+import android.widget.ProgressBar
 
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +14,8 @@ class MainActivity : AppCompatActivity() {
     private var startButton: Button? = null
     private var stopButton: Button? = null
     private var sendButton: Button? = null
-    private var tvAmplitude: TextView? = null
+   // private var tvAmplitude: TextView? = null
+    private var pbAudioAmp: ProgressBar? = null
     private var etPhone: EditText? = null
     private var etMessage: EditText? = null
 
@@ -32,7 +33,8 @@ class MainActivity : AppCompatActivity() {
         startButton = findViewById(R.id.btnStart)
         stopButton = findViewById(R.id.btnStop)
         sendButton = findViewById(R.id.btnSend)
-        tvAmplitude = findViewById(R.id.tvAmplitude)
+        //tvAmplitude = findViewById(R.id.tvAmplitude)
+        pbAudioAmp = findViewById(R.id.pbAudioAmp)
         etPhone = findViewById(R.id.etPhone)
         etMessage = findViewById(R.id.etMessage)
 
@@ -70,8 +72,11 @@ class MainActivity : AppCompatActivity() {
     private val runnableCode = object : Runnable {
         override fun run() {
             val amp = soundDetector.getAmplitude()
+            val normalAmp = soundDetector.getNormalizedAmplitude(amp)
             Log.d("#########", "Amplitude:$amp")
-            tvAmplitude?.text = amp.toString()
+            Log.d("#########", "Normalized Amplitude:$normalAmp")
+           //tvAmplitude?.text = amp.toString()
+            pbAudioAmp?.progress = normalAmp
             handler.postDelayed(this, 1000)
         }
     }

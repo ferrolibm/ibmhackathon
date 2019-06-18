@@ -27,7 +27,7 @@ class SoundDetector(private val activity: Activity) {
         //Creating MediaRecorder and specifying audio source, output format, encoder & output format
 
         // Record to the external cache directory for visibility
-        val fileName = "${activity.externalCacheDir?.absolutePath}/audiorecordtest.3gp"
+        //val fileName = "${activity.externalCacheDir?.absolutePath}/audiorecordtest.3gp"
 
         recorder = MediaRecorder()
         recorder?.setAudioSource(MediaRecorder.AudioSource.MIC)
@@ -46,11 +46,20 @@ class SoundDetector(private val activity: Activity) {
         handler.removeCallbacks(runnableCode)
     }
 
-    fun getAmplitude(): Int? {
+    fun getAmplitude(): Int {
         return if (recorder != null) {
-            recorder?.maxAmplitude
+            recorder?.maxAmplitude?:0
         } else {
             0
         }
+    }
+
+    fun getNormalizedAmplitude(amp: Int) : Int {
+        if (amp< 0) {
+            return 0
+        } else if (amp > 2000) {
+            return 100
+        }
+        return (((amp - 0.0) / 2000.0) * 100.0).toInt()
     }
 }

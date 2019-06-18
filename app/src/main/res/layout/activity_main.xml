@@ -1,34 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<LinearLayout-->
-        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--xmlns:tools="http://schemas.android.com/tools"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:orientation="vertical"-->
-        <!--tools:context=".MainActivity">-->
 
-    <!--<TextView-->
-            <!--android:text="Audio Amplitude:"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/textView" android:layout_gravity="center_horizontal" android:layout_marginTop="200"/>-->
-    <!--<TextView-->
-            <!--android:id="@+id/tvAmplitude"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="0" android:layout_gravity="center_horizontal" android:layout_marginTop="10"/>-->
-    <!--<Button-->
-            <!--android:text="Start Listening"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/btnStart" android:layout_gravity="center_horizontal" android:layout_marginTop="30"/>-->
-    <!--<Button-->
-            <!--android:text="Stop Listening"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/btnStop" android:layout_gravity="center_horizontal"/>-->
-
-<!--</LinearLayout>-->
 
 <android.support.constraint.ConstraintLayout
 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -48,17 +19,8 @@ tools:context=".MainActivity">
             android:layout_marginStart="8dp"
             android:textSize="18sp" android:textStyle="bold"
             app:layout_constraintHorizontal_bias="0.511" android:layout_marginTop="100dp"
-            app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-            android:id="@+id/tvAmplitude"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
-            android:textSize="18sp" android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/textView" android:layout_marginTop="20dp"/>
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/pbAudioAmp" app:layout_constraintVertical_bias="0.98"/>
     <Button
             android:text="Start Listening"
             android:layout_width="wrap_content"
@@ -80,19 +42,19 @@ tools:context=".MainActivity">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView2" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/tvTemp" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/tvAmplitude" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tvTemp"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
-            app:layout_constraintVertical_bias="1.0" android:textSize="18sp" android:textStyle="bold"/>
+            android:textSize="18sp" android:textStyle="bold"/>
     <TextView
             android:text="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvTemp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            app:layout_constraintHorizontal_bias="0.491"
-            android:textSize="18sp" android:textStyle="bold" android:layout_marginBottom="28dp"
+            app:layout_constraintHorizontal_bias="0.488"
+            android:textSize="18sp" android:textStyle="bold" android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@+id/etPhone"/>
     <EditText
             android:layout_width="wrap_content"
@@ -102,7 +64,7 @@ tools:context=".MainActivity">
             android:id="@+id/etPhone"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginBottom="20dp" app:layout_constraintBottom_toTopOf="@+id/etMessage"
+            android:layout_marginBottom="16dp" app:layout_constraintBottom_toTopOf="@+id/etMessage"
             android:hint="Phone Number"/>
     <EditText
             android:layout_width="wrap_content"
@@ -111,7 +73,7 @@ tools:context=".MainActivity">
             android:ems="10"
             android:id="@+id/etMessage" android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="316dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="256dp"
             app:layout_constraintBottom_toBottomOf="parent" android:hint="Message"/>
     <Button
             android:text="Send"
@@ -122,5 +84,14 @@ tools:context=".MainActivity">
             app:layout_constraintTop_toBottomOf="@+id/etMessage" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintVertical_bias="0.132"/>
+    <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="323dp"
+            android:layout_height="99dp"
+            android:max="100"
+            android:min="0"
+            android:id="@+id/pbAudioAmp" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView2" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
 
 </android.support.constraint.ConstraintLayout>
